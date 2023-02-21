@@ -1,12 +1,6 @@
 window.addEventListener("keydown", function(e){
     var key = e.keyCode;
-    var media = document.querySelector('audio[data-key="' + key + '"]');
-    if(!media) return;
-    var tag = document.querySelector('div[data-key="' + key + '"]');
-    tag.classList.remove("play");
-    tag.classList.add("play");
-    media.currentTime = 0;
-    media.play();
+    sound(key);
 });
 
 window.addEventListener("click", function(e){
@@ -16,6 +10,10 @@ window.addEventListener("click", function(e){
     }else{
         key = e.target.attributes["data-key"].value;
     }
+    sound(key);
+});
+
+function sound(key){
     var media = document.querySelector('audio[data-key="' + key + '"]');
     if(!media) return;
     var tag = document.querySelector('div[data-key="' + key + '"]');
@@ -23,7 +21,7 @@ window.addEventListener("click", function(e){
     tag.classList.add("play");
     media.currentTime = 0;
     media.play();
-});
+};
 
 const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('transitionend', function(e){
